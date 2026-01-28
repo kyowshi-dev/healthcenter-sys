@@ -1,6 +1,6 @@
 # Health Center Information System
 
-A web-based information management system for the Barangay Health Center of Sta. Ana, Tagoloan, built using the LAMP stack (Linux, Apache, MySQL, PHP).
+A web-based information management system for the Barangay Health Center of Sta. Ana, Tagoloan, built using the XAMPP stack (Cross-Platform, Apache, MySQL, PHP).
 
 ## Features
 
@@ -16,7 +16,7 @@ A web-based information management system for the Barangay Health Center of Sta.
 - PHP 8.0 or higher
 - MySQL 8.0 or higher
 - Apache 2.4 or higher
-- Linux operating system
+- Windows, MacOS, Linux Operating System
 
 ## Installation
 
