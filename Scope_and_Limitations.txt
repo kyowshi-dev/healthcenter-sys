@@ -1,0 +1,16 @@
+Scope and Limitations
+
+Scope:
+The study focuses on the development of a web-based information management system for the Barangay Health Center of Sta. Ana, Tagoloan. The system includes the following features:
+- Patient registration and demographic management
+- Consultation records and medical history tracking
+- Immunization schedule management and tracking
+- Report generation for health programs and compliance
+- Role-based access control (RBAC) to manage user permissions
+
+Limitations:
+- The system does not include hospital-level diagnostics or pharmacy inventory management.
+- Integration with national health databases (e.g., DOH) is not supported in real-time.
+- The system is designed as a local management tool for Brgy. Sta. Ana and does not synchronize with external facilities.
+- While the system facilitates referrals to external facilities and tracks medicine batches for inventory awareness, it is not intended for large-scale inventory management.
+- Role-based access control (RBAC) distinguishes between the capabilities of system administrators (user management) and barangay health workers (patient care).
