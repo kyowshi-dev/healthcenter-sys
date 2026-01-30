@@ -81,7 +81,7 @@ $consultations = $stmt->fetchAll();
                 <?= htmlspecialchars($c['visit_type'] ?? '—') ?>
             </td>
             <td style="padding:8px; border:1px solid #ddd;">
-                <a href="view.php?id=<?= $c['record_id'] ?>"
+                <a href="consultations/view.php?id=<?= $c['record_id'] ?>"
                    style="
                      padding:4px 8px;
                      background:#43a047;

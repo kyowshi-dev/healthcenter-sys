@@ -10,9 +10,16 @@ $dxList   = $pdo->query("SELECT * FROM diagnosis_lookup ORDER BY diagnosis_name"
 $medList  = $pdo->query("SELECT * FROM medicines ORDER BY medicine_name")->fetchAll();
 ?>
 
+<div style="
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    padding:20px;
+    min-height:100vh;
+">
+
 <h2>New Consultation</h2>
 
-<form method="POST" action="consultations/store.php">
+<form method="POST" action="store.php">
 
 <!-- ================= STEP 1 ================= -->
 <div class="step">
@@ -91,6 +98,7 @@ $medList  = $pdo->query("SELECT * FROM medicines ORDER BY medicine_name")->fetch
 <button type="submit" id="submitBtn" style="display:none">Save Consultation</button>
 
 </form>
+        </div>
 
 <script>
 let current = 0;

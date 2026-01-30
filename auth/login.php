@@ -25,6 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<div style="
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    padding:20px;
+    min-height:100vh;
+">
+
 <form method="POST">
     <h2>BHCIS Login</h2>
     <?= $error ? "<p style='color:red'>$error</p>" : "" ?>
@@ -32,3 +39,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="password" name="password" required placeholder="Password"><br><br>
     <button type="submit">Login</button>
 </form>
+
+</div>
