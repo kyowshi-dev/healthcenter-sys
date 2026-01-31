@@ -30,7 +30,7 @@ $consultations = $stmt->fetchAll();
 
 <h2 style="margin-bottom:10px;">Consultation Records</h2>
 
-<a href="consultations/create.php"
+<a href="/create.php"
    style="
      display:inline-block;
      padding:8px 14px;
@@ -81,7 +81,7 @@ $consultations = $stmt->fetchAll();
                 <?= htmlspecialchars($c['visit_type'] ?? '—') ?>
             </td>
             <td style="padding:8px; border:1px solid #ddd;">
-                <a href="consultations/view.php?id=<?= $c['record_id'] ?>"
+                <a href="view.php?id=<?= $c['record_id'] ?>"
                    style="
                      padding:4px 8px;
                      background:#43a047;
