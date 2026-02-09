@@ -15,29 +15,92 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($_POST['password'], $user['password'])) {
-        $_SESSION['user_id']  = $user['user_id'];
-        $_SESSION['role']     = $user['role_name'];
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['role']    = $user['role_name'];
         header("Location: /bhcis/index.php");
         exit;
     }
 
-    $error = "Invalid credentials";
+    $error = "Invalid username or password.";
 }
 ?>
 
-<div style="
-    font-family: Arial, sans-serif;
-    background:#f4f6f8;
-    padding:20px;
-    min-height:100vh;
-">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
 
-<form method="POST">
-    <h2>BHCIS Login</h2>
-    <?= $error ? "<p style='color:red'>$error</p>" : "" ?>
-    <input name="username" required placeholder="Username"><br><br>
-    <input type="password" name="password" required placeholder="Password"><br><br>
-    <button type="submit">Login</button>
-</form>
+<meta charset="UTF-8">
+<title>BHCIS Login</title>
 
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom (minimal) -->
+<link href="style.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="bg-light">
+
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-sm-10 col-md-6 col-lg-4">
+
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <h4 class="text-center mb-2">BHCIS</h4>
+                    <p class="text-center text-muted mb-4">
+                        Barangay Health Center Information System
+                    </p>
+
+                    <?php if ($error): ?>
+                        <div class="alert alert-danger py-2 text-center">
+                            <?= htmlspecialchars($error) ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form method="POST" autocomplete="off">
+
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input
+                                type="text"
+                                name="username"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Login
+                        </button>
+                    </form>
+
+                </div>
+
+                <div class="card-footer text-center text-muted small">
+                    © <?= date('Y') ?> Barangay Health Center
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

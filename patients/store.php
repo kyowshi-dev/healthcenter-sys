@@ -29,6 +29,17 @@ try {
         throw new Exception("Required fields missing.");
     }
 
+        $dupCheck = $pdo->prepare("
+    SELECT COUNT(*) FROM patient
+    WHERE last_name=? AND date_of_birth=?
+    ");
+    $dupCheck->execute([$last_name, $dob]);
+
+    if ($dupCheck->fetchColumn() > 0) {
+        throw new Exception("Possible duplicate patient detected.");
+    }
+
+
     /* ===============================
        CREATE HOUSEHOLD
     =============================== */

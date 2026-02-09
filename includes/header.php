@@ -2,98 +2,69 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /bhcis/login.php");
+    exit;
+}
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>BHCIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bhcis/assets/style.css" rel="stylesheet">
 </head>
+<body class="bg-light">
 
-<body style="
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f4f6f8;
-">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/bhcis/index.php">
+            <div style="width:35px;height:35px;background:#fff;border-radius:50%;display:flex;justify-content:center;align-items:center;color:#0d6efd;font-weight:bold;font-size:16px;">
+                L
+            </div>
+            BHCIS
+        </a>
 
-<!-- ===============================
-     TOP BAR
-================================ -->
-<div style="
-    background:#1e88e5;
-    color:white;
-    padding:12px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bhcisNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div style="font-size:18px; font-weight:bold;">
-        🏥 Brgy Sta. Ana Health Center
+        <div class="collapse navbar-collapse" id="bhcisNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/bhcis/index.php?page=dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bhcis/index.php?page=patients">Patients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bhcis/index.php?page=consultations">Consultations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bhcis/index.php?page=prenatal">Prenatal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bhcis/index.php?page=immunization">Immunization</a>
+                </li>
+            </ul>
+
+            <div class="d-flex align-items-center text-white small gap-3">
+                <span class="navbar-text text-white p-0">
+                    Welcome, <strong><?= htmlspecialchars($_SESSION['username'] ?? 'User') ?></strong>
+                </span>
+                <span class="badge bg-light text-primary">
+                    <?= htmlspecialchars($_SESSION['role'] ?? 'User') ?>
+                </span>
+                <a href="/bhcis/auth/logout.php" class="btn btn-sm btn-outline-light">
+                    Logout
+                </a>
+            </div>
+        </div>
     </div>
+</nav>
 
-    <div style="font-size:14px;">
-        Logged in as:
-        <strong><?= $_SESSION['username'] ?? 'Admin' ?></strong>
-    </div>
-</div>
-
-<!-- ===============================
-     NAVIGATION BAR
-================================ -->
-<div style="
-    background:#ffffff;
-    padding:10px 20px;
-    border-bottom:1px solid #ddd;
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-">
-
-<a href="/bhcis/dashboard.php" style="
-    text-decoration:none;
-    color:#1e88e5;
-    font-weight:bold;
-">Dashboard</a>
-
-<a href="/bhcis/patients/index.php" style="
-    text-decoration:none;
-    color:#333;
-">Patients</a>
-
-<a href="/bhcis/consultations/index.php" style="
-    text-decoration:none;
-    color:#333;
-">Consultations</a>
-
-<a href="/bhcis/prenatal/index.php" style="
-    text-decoration:none;
-    color:#333;
-">Prenatal</a>
-
-<a href="/bhcis/postpartum/index.php" style="
-    text-decoration:none;
-    color:#333;
-">Postpartum</a>
-
-<a href="/bhcis/immunization/index.php" style="
-    text-decoration:none;
-    color:#333;
-">Immunization</a>
-
-<a href="/bhcis/users/index.php" style="
-    text-decoration:none;
-    color:#333;
-">Users</a>
-
-<a href="/bhcis/auth/logout.php" style="
-    text-decoration:none;
-    color:#c62828;
-    margin-left:auto;
-">Logout</a>
-
-</div>
-
-<!-- ===============================
-     PAGE CONTAINER START
-================================ -->
-<div style="padding:20px;">
+<div class="container-fluid mt-4">
